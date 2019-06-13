@@ -1,9 +1,17 @@
+Duck Simulator
+<pre>
+
 <?php
-
-use Headfirst\Test;
-
 require_once 'bootstrap.php';
+use Headfirst\Duck;
+use Headfirst\Duck\MallardDuck;
 
-$test = new Test;
-$test->hello();
+$mallard = new MallardDuck();
 
+$mallard->perfomQuack();
+$mallard->performFly();
+
+
+?>
+
+</pre>
