@@ -22,4 +22,12 @@ abstract class Duck {
         echo 'All ducks float, even decoys!' . PHP_EOL;
     }
 
+    public function setFlyBehavior(FlyBehavior $fb): void {
+        $this->flyBehavior = $fb;
+    }
+
+    public function setQuackBehavior(QuackBehavior $qb): void {
+        $this->quackBehavior = $qb;
+    }
+
 }
