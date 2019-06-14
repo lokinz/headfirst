@@ -3,7 +3,7 @@
 namespace Headfirst\Observer;
 use Headfirst\Observer\Observer;
 
-class Observable implements Subject
+abstract class Observable implements Subject
 {
     private $observers;
     private $changed;
@@ -26,19 +26,19 @@ class Observable implements Subject
         }
     }
 
-    public function setChanged(): void
+    protected function setChanged(): void
     {
         $this->changed = true;
     }
 
-    public function notifyObservers($data = null): void
+    public function notifyObservers(): void
     {
         if (!$this->changed){
             return;
         }
 
         foreach ($this->observers as $observer){
-            $observer->update($this, $data);
+            $observer->update($this);
         }
         $this->changed = false;
     }
