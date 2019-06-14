@@ -27,6 +27,6 @@ class CurrentConditionsDisplay implements Observer, DisplayElement
 
     public function display(): void
     {
-        echo "Current conditions: {$this->temperature} C and {$this->humidity}% humidity." . PHP_EOL;
+        echo "Current conditions: {$this->temperature}F and {$this->humidity}% humidity." . PHP_EOL;
     }
 }

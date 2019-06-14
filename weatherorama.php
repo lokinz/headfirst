@@ -7,17 +7,19 @@ require_once 'bootstrap.php';
 use Headfirst\Observer\WeatherData;
 use Headfirst\Observer\CurrentConditionsDisplay;
 use Headfirst\Observer\ForecastDisplay;
+use Headfirst\Observer\HeatindexDisplay;
 
 $weatherData = new WeatherData;
 
 $currentDisplay = new CurrentConditionsDisplay($weatherData);
 $forecastDisplay = new ForecastDisplay($weatherData);
+$heatIndex = new HeatindexDisplay($weatherData);
 
-$weatherData->setMeasurments(15, 65, 30.4);
+$weatherData->setMeasurments(80, 65, 30.4);
 echo PHP_EOL;
-$weatherData->setMeasurments(25, 40, 30.4);
+$weatherData->setMeasurments(82, 70, 29.2);
 echo PHP_EOL;
-$weatherData->setMeasurments(21, 90, 29.4);
+$weatherData->setMeasurments(78, 90, 29.2);
 
 ?>
 
