@@ -11,14 +11,20 @@ class ForecastDisplay implements Observer, DisplayElement
     private $lastPressure;
     private $weatherData;
 
-    public function __construct(Subject $weatherData)
+    public function __construct(Observable $weatherData)
     {
         $weatherData->registerObserver($this);
         $this->weatherData = $weatherData;
     }
 
-    public function update(float $temp, float $humidity, float $pressure): void
+    
+    public function update(Observable $ob): void
     {
+        if(!$ob instanceOf WeatherData){
+            return;
+        }
+        /** @var WeatherData $ob */
+        $pressure = $ob->getPressure();
         $this->lastPressure = $this->pressure;
         $this->pressure = $pressure;
 

@@ -3,25 +3,29 @@ namespace Headfirst\Observer;
 
 use Headfirst\Observer\Observer;
 use Headfirst\Observer\DisplayElement;
-use Headfirst\Observer\Subject;
+use Headfirst\Observer\Observable;
+use Headfirst\Observer\WeatherData;
 
 class CurrentConditionsDisplay implements Observer, DisplayElement
 {
     private $temperature;
     private $humidity;
-    /** @var Subject $weatherData */
     private $weatherData;
 
-    public function __construct(Subject $weatherData)
+    public function __construct(Observable $weatherData)
     {
         $this->weatherData = $weatherData;
         $this->weatherData->registerObserver($this);
     }
 
-    public function update(float $temp, float $humidity, float $pressure): void
+    public function update(Observable $ob): void
     {
-        $this->temperature = $temp;
-        $this->humidity = $humidity;
+        if(!$ob instanceOf WeatherData){
+            return;
+        }
+        /** @var WeatherData $ob */
+        $this->temperature = $ob->getTemperature();
+        $this->humidity = $ob->getHumidity();
         $this->display();
     }
 

@@ -1,40 +1,16 @@
 <?php
 namespace Headfirst\Observer;
-use Headfirst\Observer\Observer;
+use Headfirst\Observer\Observable; 
 
-class WeatherData implements Subject
+class WeatherData extends Observable
 {
-    private $observers;
     private $temperature;
     private $humidity;
     private $pressure;
 
-    public function __construct ()
-    {
-        $this->observers = [];
-    }
-
-    public function registerObserver(Observer $o): void
-    {
-        $this->observers[] = $o;   
-    }
-
-    public function removeObserver(Observer $o): void
-    {
-        if($key = array_search($o, $this->observers) !== false){
-            unset($this->observers[$key]);
-        }
-    }
-
-    public function notifyObservers(): void
-    {
-        foreach ($this->observers as $observer){
-            $observer->update($this->temperature, $this->humidity, $this->pressure);
-        }
-    }
-
     public function measumentsChanged(): void 
     {
+        $this->setChanged();
         $this->notifyObservers();
     }
 
@@ -44,5 +20,20 @@ class WeatherData implements Subject
         $this->humidity = $humidity;
         $this->pressure = $pressure;
         $this->measumentsChanged();
+    }
+
+    public function getTemperature(): float
+    {
+        return $this->temperature;
+    }
+
+    public function getHumidity(): float
+    {
+        return $this->humidity;
+    }
+
+    public function getPressure(): float
+    {
+        return $this->pressure;
     }
 }

@@ -3,7 +3,7 @@ namespace Headfirst\Observer;
 
 use Headfirst\Observer\Observer;
 use Headfirst\Observer\DisplayElement;
-use Headfirst\Observer\Subject;
+use Headfirst\Observer\Observable;
 
 class StatisticsDisplay implements Observer, DisplayElement
 {
@@ -13,14 +13,19 @@ class StatisticsDisplay implements Observer, DisplayElement
     private $numReadings = 0;
     private $weatherData;
 
-    public function __construct(Subject $weatherData)
+    public function __construct(Observable $weatherData)
     {
         $weatherData->registerObserver($this);
         $this->weatherData = $weatherData;
     }
 
-    public function update(float $temp, float $humidity, float $pressure): void
+    public function update(Observable $ob): void
     {
+        if(!$ob instanceOf WeatherData){
+            return;
+        }
+        /** @var WeatherData $ob */    
+        $temp = $ob->getTemperature();
         $this->tempSum += $temp;
         $this->numReadings++;
         $this->maxTemp = max($this->maxTemp, $temp);

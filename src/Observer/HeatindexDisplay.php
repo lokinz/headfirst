@@ -12,16 +12,21 @@ class HeatindexDisplay implements Observer, DisplayElement
     /** @var Subject $weatherData */
     private $weatherData;
 
-    public function __construct(Subject $weatherData)
+    public function __construct(Observable $weatherData)
     {
         $this->weatherData = $weatherData;
         $this->weatherData->registerObserver($this);
     }
 
-    public function update(float $temp, float $humidity, float $pressure): void
+    
+    public function update(Observable $ob): void
     {
-        $this->temperature = $temp;
-        $this->humidity = $humidity;
+        if(!$ob instanceOf WeatherData){
+            return;
+        }
+        /** @var WeatherData $ob */    
+        $temp = $ob->getTemperature();
+        $humidity = $ob->getHumidity();
         $this->heatIndex = $this->computeHeatIndex($temp, $humidity);
         $this->display();
     }
