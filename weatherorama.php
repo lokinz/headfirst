@@ -8,10 +8,12 @@ use Headfirst\Observer\WeatherData;
 use Headfirst\Observer\CurrentConditionsDisplay;
 use Headfirst\Observer\ForecastDisplay;
 use Headfirst\Observer\HeatindexDisplay;
+use Headfirst\Observer\StatisticsDisplay;
 
 $weatherData = new WeatherData;
 
 $currentDisplay = new CurrentConditionsDisplay($weatherData);
+$statisticsDisplay = new StatisticsDisplay($weatherData);
 $forecastDisplay = new ForecastDisplay($weatherData);
 $heatIndex = new HeatindexDisplay($weatherData);
 
