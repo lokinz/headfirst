@@ -5,5 +5,5 @@ use Headfirst\Factory\Ingredient\Sauce;
 
 class PlumTomatoSauce extends Sauce
 {
-
+    public $name = 'Plum Tomato Sauce';
 }

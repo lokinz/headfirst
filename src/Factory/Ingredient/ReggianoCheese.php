@@ -5,5 +5,5 @@ use Headfirst\Factory\Ingredient\Cheese;
 
 class ReggianoCheese extends Cheese
 {
-
+    public $name = 'Reggiano Cheese';
 }

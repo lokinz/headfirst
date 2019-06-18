@@ -5,5 +5,5 @@ use Headfirst\Factory\Ingredient\Clams;
 
 class FreshClams extends Clams
 {
-    
+    public $name = 'Fresh Clam'; 
 }

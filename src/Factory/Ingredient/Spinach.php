@@ -5,5 +5,5 @@ use Headfirst\Factory\Ingredient\Veggies;
 
 class Spinach extends Veggies
 {
-    
+    public $name = 'Spinach';
 }

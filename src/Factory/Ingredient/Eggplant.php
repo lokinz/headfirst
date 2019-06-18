@@ -5,5 +5,5 @@ use Headfirst\Factory\Ingredient\Veggies;
 
 class Eggplant extends Veggies
 {
-    
+    public $name = 'Eggplant'; 
 }

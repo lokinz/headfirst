@@ -6,18 +6,12 @@ abstract class Pizza
     protected $name;
     protected $dough;
     protected $sauce;
-    protected $toppings = [];
+    protected $veggies = [];
+    protected $cheese;
+    protected $pepperoni;
+    protected $clam;
 
-    public function prepare(): void
-    {
-        echo 'Preparing ' . $this->name . PHP_EOL;
-        echo 'Tossing dough...' . PHP_EOL;
-        echo 'Adding sauce...' . PHP_EOL;
-        echo 'Adding toppings: ' . PHP_EOL;
-        foreach($this->toppings as $topping){
-            echo '   ' . $topping . PHP_EOL;
-        }
-    }
+    abstract public function prepare(): void;
 
     public function bake(): void
     {
@@ -34,8 +28,43 @@ abstract class Pizza
         echo 'Place pizza in offical PizzaStore box' . PHP_EOL;
     }
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function __toString() {
+        $makup = [];
+
+        if($this->dough) {
+            $makup[] = $this->dough->name;
+        }
+
+        if($this->sauce) {
+            $makup[] = $this->sauce->name;
+        }
+
+        if($this->cheese) {
+            $makup[] = $this->cheese->name;
+        }
+
+        if($this->pepperoni) {
+            $makup[] = $this->pepperoni->name;
+        }
+
+        if($this->clam) {
+            $makup[] = $this->clam->name;
+        }
+        
+        foreach($this->veggies as $veg){
+            $makup[] = $veg->name;
+        }
+
+        return rtrim($this->name . ': ' . implode(", ", $makup), ' ,');
     }
 }

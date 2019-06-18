@@ -5,6 +5,6 @@ use Headfirst\Factory\Ingredient\Pepperoni;
 
 class SlicedPepperoni extends Pepperoni
 {
-    
+    public $name = 'Sliced Pepperoni';
 }
 
