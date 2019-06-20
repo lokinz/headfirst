@@ -3,13 +3,20 @@
 namespace Headfirst\Command;
 
 class Light {
+    protected $location;
+
+    public function __construct(string $location)
+    {
+        $this->location = $location;
+    }
+
     public function on()
     {
-        echo 'Light turned on' . PHP_EOL;
+        echo $this->location . ' light turned on' . PHP_EOL;
     }
 
     public function off()
     {
-        echo 'Light turned off' . PHP_EOL;
+        echo $this->location . ' light turned off' . PHP_EOL;
     }
 }

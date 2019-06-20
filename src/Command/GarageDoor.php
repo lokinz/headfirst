@@ -4,14 +4,21 @@ namespace Headfirst\Command;
 
 class GarageDoor 
 {
-    public function up(): void 
+    protected $location;
+
+    public function __construct(string $location)
     {
-        echo 'Door Up';
+        $this->location = $location;
+    }
+
+    public function up(): void
+    {
+        echo "{$this->location} Garage Door Up";
     }
 
     public function down(): void
     {
-        echo 'Door Down';
+        echo "{$this->location} Garage Door Down";
     }
 
 

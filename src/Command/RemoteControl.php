@@ -44,7 +44,7 @@ class RemoteControl
         $return = PHP_EOL . '----- Remote Control ----' . PHP_EOL;
         /** @var Command $onCommand */
         foreach ($this->onCommands as $i => $onCommand){
-            $return .= "[slot {$i}] " . (new ReflectionClass($onCommand))->getShortName() . ' '
+            $return .= "[slot {$i}] " . (new ReflectionClass($onCommand))->getShortName() . "\t\t"
                 . (new ReflectionClass($this->offCommands[$i]))->getShortName() . PHP_EOL;
         }
 
