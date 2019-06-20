@@ -11,12 +11,12 @@ use Headfirst\Command\GarageDoor;
 
 $remote = new SimpleRemoteControl;
 $lightOnCommand = new LightOnCommand(new Light);
-$garageDoorUpcommand = new GarageDoorUpCommand(new GarageDoor);
+$garageDoorUpCommand = new GarageDoorUpCommand(new GarageDoor);
 
 $remote->setCommand($lightOnCommand);
 $remote->buttonWasPressed();
 echo PHP_EOL;
-$remote->setCommand($garageDoorUpcommand);
+$remote->setCommand($garageDoorUpCommand);
 $remote->buttonWasPressed();
 
 
