@@ -1,8 +1,12 @@
 Remote Control Test
+
+Simple Remote:
 <pre>
 
 <?php
 require_once 'bootstrap.php';
+
+use Headfirst\Command\RemoteControl;
 use Headfirst\Command\SimpleRemoteControl;
 use Headfirst\Command\LightOnCommand;
 use Headfirst\Command\Light;
@@ -18,9 +22,13 @@ $remote->buttonWasPressed();
 echo PHP_EOL;
 $remote->setCommand($garageDoorUpCommand);
 $remote->buttonWasPressed();
-
-
-
 ?>
-
+</pre>
+<hr>
+Full Remote
+<pre>
+<?php
+    $remote = new RemoteControl;
+    echo $remote;
+?>
 </pre>

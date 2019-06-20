@@ -7,4 +7,9 @@ class Light {
     {
         echo 'Light turned on' . PHP_EOL;
     }
+
+    public function off()
+    {
+        echo 'Light turned off' . PHP_EOL;
+    }
 }
