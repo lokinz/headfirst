@@ -4,11 +4,11 @@
 namespace Headfirst\Command;
 
 
-class CeilingFanOffCommand extends CeilingFanCommand
+class CeilingFanMediumCommand extends CeilingFanCommand
 {
     public function execute(): void
     {
         $this->prevSpeed = $this->fan->getSpeed();
-        $this->fan->off();
+        $this->fan->medium();
     }
 }

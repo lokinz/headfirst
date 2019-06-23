@@ -12,6 +12,8 @@ class RemoteControl
     protected $onCommands;
     /** @var Command[] $offCommands */
     protected $offCommands;
+    /** @var Command $undoCommand */
+    protected $undoCommand;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class RemoteControl
             $this->onCommands[$i] = $command;
             $this->offCommands[$i] = $command;
         }
+        $this->undoCommand = $command;
     }
 
     public function setCommand(int $slot, Command $onCommand, Command $offCommand): void
@@ -32,11 +35,18 @@ class RemoteControl
     public function onButtonWasPushed(int $slot): void
     {
         $this->onCommands[$slot]->execute();
+        $this->undoCommand = $this->onCommands[$slot];
     }
 
     public function offButtonWasPushed(int $slot): void
     {
         $this->offCommands[$slot]->execute();
+        $this->undoCommand = $this->offCommands[$slot];
+    }
+
+    public function undoButtonWasPushed(): void
+    {
+        $this->undoCommand->undo();
     }
 
     public function __toString()
@@ -47,6 +57,7 @@ class RemoteControl
             $return .= "[slot {$i}] " . (new ReflectionClass($onCommand))->getShortName() . "\t\t"
                 . (new ReflectionClass($this->offCommands[$i]))->getShortName() . PHP_EOL;
         }
+        $return .= '[undo] ' . (new ReflectionClass($this->undoCommand))->getShortName() . PHP_EOL;
 
         return $return;
     }

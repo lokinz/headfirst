@@ -17,4 +17,9 @@ class StereoOffCommand implements Command
     {
         $this->stereo->off();
     }
+
+    public function undo(): void
+    {
+        // TODO: Implement undo() method.
+    }
 }
