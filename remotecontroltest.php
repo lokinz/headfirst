@@ -7,10 +7,15 @@ Simple Remote:
 require_once 'bootstrap.php';
 
 use Headfirst\Command\CeilingFan;
+use Headfirst\Command\CeilingFanLowCommand;
 use Headfirst\Command\CeilingFanMediumCommand;
 use Headfirst\Command\CeilingFanOffCommand;
 use Headfirst\Command\CeilingFanHighCommand;
+use Headfirst\Command\HotTub;
+use Headfirst\Command\HotTubOffCommand;
+use Headfirst\Command\HotTunOnCommand;
 use Headfirst\Command\LightOffCommand;
+use Headfirst\Command\MacroCommand;
 use Headfirst\Command\RemoteControl;
 use Headfirst\Command\SimpleRemoteControl;
 use Headfirst\Command\LightOnCommand;
@@ -80,6 +85,39 @@ $remote->undoButtonWasPushed();
 $remote->onButtonWasPushed(1);
 echo $remote . PHP_EOL;
 $remote->undoButtonWasPushed();
+?>
+</pre>
+<hr>
+Macros
+<pre>
+<?php
+
+$remote = new RemoteControl;
+$light = new Light('Living Room');
+$stereo = new Stereo('Living Room');
+$ceilingFan = new CeilingFan('Living Room');
+$hotTub = new HotTub;
+
+$lightOnCommand = new LightOnCommand($light);
+$lightOffCommand = new LightOffCommand($light);
+$stereoOnCommand = new StereoWithCDCommand($stereo);
+$stereoOffCommand = new StereoOffCommand($stereo);
+$ceilingFanLowCommand = new CeilingFanLowCommand($ceilingFan);
+$ceilingFanOffCommand = new CeilingFanOffCommand($ceilingFan);
+$hotTubOnCommand = new HotTunOnCommand($hotTub);
+$hotTubOffCommand = new HotTubOffCommand($hotTub);
+
+$partyOnMacro = new MacroCommand($lightOnCommand, $stereoOnCommand, $ceilingFanLowCommand, $hotTubOnCommand);
+$partOffMacro = new MacroCommand($lightOffCommand, $stereoOffCommand, $ceilingFanOffCommand, $hotTubOffCommand);
+
+$remote->setCommand(0, $partyOnMacro, $partOffMacro);
+$remote->onButtonWasPushed(0);
+$remote->undoButtonWasPushed();
+
+
+$remote->onButtonWasPushed(0);
+
+$remote->offButtonWasPushed(0);
 
 ?>
 </pre>

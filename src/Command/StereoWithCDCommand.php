@@ -22,6 +22,6 @@ class StereoWithCDCommand implements Command
 
     public function undo(): void
     {
-        // TODO: Implement undo() method.
+       $this->stereo->off();
     }
 }
