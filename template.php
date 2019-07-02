@@ -3,7 +3,6 @@ Coffee Template
 
 <?php
 require_once 'bootstrap.php';
-
 use Headfirst\Template\Coffee;
 use Headfirst\Template\Tea;
 
