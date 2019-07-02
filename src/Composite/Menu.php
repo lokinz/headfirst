@@ -10,6 +10,7 @@ class Menu extends MenuComponent
     protected $menuComponents;
     protected $name;
     protected $description;
+    protected $iterator;
 
     public function __construct(string $name, string $description)
     {
@@ -50,8 +51,23 @@ class Menu extends MenuComponent
         echo PHP_EOL . $this->getName() . ', ' . $this->getDescription() . PHP_EOL;
         echo '----------------' . PHP_EOL;
 
-        foreach ($this->menuComponents as $menuComponent){
+        $iterator = new MenuComponentsIterator($this->menuComponents);
+        while ($iterator->hasNext()){
+            $menuComponent = $iterator->next();
             $menuComponent->print();
         }
+//        foreach ($this->menuComponents as $menuComponent){
+//            $menuComponent->print();
+//        }
+    }
+
+    public function createIterator(): IteratorInterface
+    {
+        if(is_null($this->iterator)){
+            $this->iterator = new CompositeIterator(
+                new MenuComponentsIterator($this->menuComponents)
+            );
+        }
+        return $this->iterator;
     }
 }

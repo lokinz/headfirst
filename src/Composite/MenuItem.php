@@ -10,6 +10,7 @@ class MenuItem extends MenuComponent
     protected $description;
     protected $vegetarian;
     protected $price;
+    protected $iterator;
 
     public function __construct(string $name, string $description, bool $vegetarian, float $price)
     {
@@ -47,5 +48,13 @@ class MenuItem extends MenuComponent
         }
         echo ', $' . $this->getPrice();
         echo PHP_EOL . '    -- ' . $this->getDescription() . PHP_EOL;
+    }
+
+    public function createIterator(): IteratorInterface
+    {
+        if(is_null($this->iterator)){
+            $this->iterator = new NullIterator;
+        }
+        return $this->iterator;
     }
 }

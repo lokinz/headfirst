@@ -47,4 +47,6 @@ abstract class MenuComponent
     {
         throw new BadMethodCallException();
     }
+
+    abstract public function createIterator(): IteratorInterface;
 }

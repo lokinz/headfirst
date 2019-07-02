@@ -40,10 +40,16 @@ $cafeMenu->add(new MenuItem('Veggie Burger and Air Fries',
     true,
     3.99));
 
+$dinerMenu->add(new MenuItem("Vegetarian BLT",
+    "(Fakin’) Bacon with lettuce & tomato on whole wheat", true, 2.99));
+$dinerMenu->add(new MenuItem("BLT",
+    "Bacon with lettuce & tomato on whole wheat", false, 2.99));
+
+
 $waitress = new Waitress($allMenus);
 
 $waitress->printMenu();
-
+$waitress->printVegetarianMenu();
 
 ?>
 
