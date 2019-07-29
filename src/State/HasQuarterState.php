@@ -28,7 +28,12 @@ class HasQuarterState implements State
     public function turnCrank(): void
     {
         echo 'You turned...' . PHP_EOL;
-        $this->gumballMachine->setState($this->gumballMachine->getSoldState());
+
+        if (random_int(1, 10) === 10) {
+            $this->gumballMachine->setState($this->gumballMachine->getWinnerState());
+        } else {
+            $this->gumballMachine->setState($this->gumballMachine->getSoldState());
+        }
     }
 
     public function dispense(): void

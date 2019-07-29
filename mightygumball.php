@@ -39,6 +39,7 @@ echo PHP_EOL;
 $gumballMachine->insertQuarter();
 $gumballMachine->insertQuarter();
 $gumballMachine->turnCrank();
+$gumballMachine->refill(5);
 $gumballMachine->insertQuarter();
 $gumballMachine->turnCrank();
 $gumballMachine->insertQuarter();

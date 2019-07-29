@@ -14,6 +14,8 @@ class GumballMachine implements State
     protected $hasQuarterState;
     /** @var State $soldState */
     protected $soldState;
+    /** @var State $winnerState */
+    protected $winnerState;
 
     /** @var int $state */
     private $state;
@@ -26,6 +28,7 @@ class GumballMachine implements State
         $this->noQuarterState = new NoQuarterState($this);
         $this->hasQuarterState = new HasQuarterState($this);
         $this->soldState = new SoldState($this);
+        $this->winnerState = new WinnerState($this);
 
         $this->count = $count;
         if($count > 0){
@@ -102,5 +105,19 @@ class GumballMachine implements State
     {
         return $this->count;
     }
+
+    public function getWinnerState(): State
+    {
+        return $this->winnerState;
+    }
+
+    public function refill(int $count){
+        echo "Adding {$count} gumballs to the machine." . PHP_EOL;
+        $this->count += $count;
+        if($this->count > 0){
+            $this->setState($this->getNoQuarterState());
+        }
+    }
+
 
 }
