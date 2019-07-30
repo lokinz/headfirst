@@ -6,7 +6,7 @@ Mighty Gumball
 use Headfirst\State\GumballMachine;
 require_once 'bootstrap.php';
 
-$gumballMachine = new GumballMachine(5);
+$gumballMachine = new GumballMachine('demo', 5);
 
 echo $gumballMachine . PHP_EOL;
 

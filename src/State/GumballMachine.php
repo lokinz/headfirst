@@ -17,13 +17,17 @@ class GumballMachine implements State
     /** @var State $winnerState */
     protected $winnerState;
 
+    /** @var string $location */
+    private $location;
+
     /** @var int $state */
     private $state;
     /** @var int $count */
     private $count = 0;
 
-    public function __construct(int $count)
+    public function __construct(string $location, int $count)
     {
+        $this->location = $location;
         $this->soldOutState = new SoldOutState($this);
         $this->noQuarterState = new NoQuarterState($this);
         $this->hasQuarterState = new HasQuarterState($this);
@@ -117,6 +121,16 @@ class GumballMachine implements State
         if($this->count > 0){
             $this->setState($this->getNoQuarterState());
         }
+    }
+
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    public function getState()
+    {
+        return $this->state;
     }
 
 
